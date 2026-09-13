@@ -5,23 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Data-Aware AI Assistant</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>📊 내 상황을 아는 AI 비서</h1>
-      <p>시계열 데이터를 기반으로 대화하는 사용자 맞춤형 AI 서비스</p>
+      <div class="header-content">
+        <div class="header-title">
+          <h1>📊 내 상황을 아는 AI 비서</h1>
+          <p>시계열 데이터를 기반으로 대화하는 사용자 맞춤형 AI 서비스</p> 
+        </div>
+        <button id="btn-theme-toggle" class="btn btn-sm secondary">🌙 다크 모드</button>
+      </div>
     </header>
 
     <!-- 1. 데이터 요약 영역 -->
     <section class="card summary-card">
-      <h2>📈 데이터 요약 정보</h2>
+      <!-- 정렬을 위한 card-header 태그 구조 수정 -->
+      <div class="card-header">
+        <h2>📈 데이터 요약 정보</h2>
+        <button id="btn-export-csv" class="btn btn-sm secondary">📥 CSV 다운로드</button>
+      </div>
+
       <div id="summary-content" class="summary-grid">
         <div class="summary-item"><span class="label">기간:</span> <span id="sum-period">-</span></div>
         <div class="summary-item"><span class="label">건수:</span> <span id="sum-count">0</span>개</div>
         <div class="summary-item"><span class="label">평균값:</span> <span id="sum-avg">0</span></div>
         <div class="summary-item"><span class="label">최대/최소:</span> <span id="sum-range">0 / 0</span></div>
         <div class="summary-item full-width"><span class="label">최근 추세:</span> <span id="sum-trend" class="badge">-</span></div>
+      </div>
+
+      <!-- 추세 차트 캔버스 -->
+      <div class="chart-container" style="position: relative; height:250px; margin-top:15px;">
+        <canvas id="trendChart"></canvas>
       </div>
     </section>
 
@@ -48,7 +64,7 @@
         <!-- 이전 대화 기록 -->
         <section class="card">
           <h3>💬 대화 목록</h3>
-          <button id="btn-new-chat" class="btn secondary">+ 새 대화 시작</button>
+          <button id="btn-new-chat" class="btn secondary btn-full">+ 새 대화 시작</button>
           <ul id="conv-list" class="scrollable-list"></ul>
         </section>
       </aside>
