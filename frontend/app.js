@@ -4,6 +4,9 @@ const API_BASE_URL = window.location.origin.includes("localhost") || window.loca
 
 let currentConversationId = null;
 
+let chartInstance = null;
+let currentDataList = []; // CSV 내보내기용 글로벌 데이터 저장소
+
 // DOM 로드 완료 후 초기화
 document.addEventListener("DOMContentLoaded", () => {
   loadSummary();
@@ -13,6 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("data-form").addEventListener("submit", handleAddData);
   document.getElementById("chat-form").addEventListener("submit", handleSendChat);
   document.getElementById("btn-new-chat").addEventListener("click", startNewChat);
+
+  // 보너스 기능 이벤트 리스너 등록
+  document.getElementById("btn-export-csv").addEventListener("click", exportToCSV);
+  document.getElementById("btn-theme-toggle").addEventListener("click", toggleDarkMode);
 });
 
 // 1. 데이터 요약 불러오기
@@ -35,6 +42,35 @@ async function loadDataList() {
   try {
     const res = await fetch(`${API_BASE_URL}/api/data`);
     const items = await res.json();
+    currentDataList = items; // 전체 데이터 저장
+
+    // 데이터 날짜순 정렬
+    items.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    // UI 리스트 갱신 (최근 10개만 표시)
+    const listEl = document.getElementById("data-list");
+    listEl.innerHTML = "";
+    items.slice(-10).reverse().forEach(item => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <span>${item.date}: <strong>${item.value}</strong> (${item.memo})</span>
+        <button class="btn-del" onclick="deleteData('${item.id}')">삭제</button>
+      `;
+      listEl.appendChild(li);
+    });
+
+    // 📈 차트 시각화 업데이트 (최근 30개 데이터)
+    renderChart(items.slice(-30));
+  } catch (err) {
+    console.error("데이터 목록 로드 실패:", err);
+  }
+}
+
+/*
+async function loadDataList() {
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/data`);
+    const items = await res.json();
     const listEl = document.getElementById("data-list");
     listEl.innerHTML = "";
 
@@ -51,6 +87,8 @@ async function loadDataList() {
     console.error("데이터 목록 로드 실패:", err);
   }
 }
+*/
+
 
 async function handleAddData(e) {
   e.preventDefault();
@@ -168,4 +206,74 @@ function startNewChat() {
     <div class="message assistant">새 대화가 시작되었습니다. 질문을 입력하세요.</div>
   `;
   loadConversations();
+}
+
+// 2. Chart.js 시각화 렌더링
+function renderChart(data) {
+  const ctx = document.getElementById("trendChart").getContext("2d");
+  const labels = data.map(item => item.date);
+  const values = data.map(item => item.value);
+
+  if (chartInstance) {
+    chartInstance.destroy(); // 기존 차트 인스턴스 파기
+  }
+
+  chartInstance = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '변화 추세 (최근 30건)',
+        data: values,
+        borderColor: '#3182ce',
+        backgroundColor: 'rgba(49, 130, 206, 0.1)',
+        borderWidth: 2,
+        fill: true,
+        tension: 0.3
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: false }
+      }
+    }
+  });
+}
+
+// 3. CSV 다운로드 기능
+function exportToCSV() {
+  if (!currentDataList || currentDataList.length === 0) {
+    alert("내보낼 데이터가 없습니다.");
+    return;
+  }
+
+  // BOM 추가하여 Excel 한글 깨짐 방지
+  let csvContent = "\uFEFFDate,Value,Memo\n";
+  
+  currentDataList.forEach(row => {
+    const memoEscaped = `"${(row.memo || '').replace(/"/g, '""')}"`;
+    csvContent += `${row.date},${row.value},${memoEscaped}\n`;
+  });
+
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.setAttribute("href", url);
+  link.setAttribute("download", `data_export_${new Date().toISOString().slice(0,10)}.csv`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+// 4. 다크 모드 토글
+function toggleDarkMode() {
+  document.body.classList.toggle("dark-mode");
+  const btn = document.getElementById("btn-theme-toggle");
+  if (document.body.classList.contains("dark-mode")) {
+    btn.innerText = "☀️ 라이트 모드";
+  } else {
+    btn.innerText = "🌙 다크 모드";
+  }
 }
