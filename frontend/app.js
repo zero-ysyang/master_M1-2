@@ -1,6 +1,6 @@
 const API_BASE_URL = window.location.origin.includes("localhost") || window.location.origin.includes("127.0.0.1")
   ? "http://127.0.0.1:8000"
-  : ""; // 배포 환경 동적 바인딩
+  : "https://ai-service-backend-uno2.onrender.com"; // 배포 환경 동적 바인딩
 
 let currentConversationId = null;
 
