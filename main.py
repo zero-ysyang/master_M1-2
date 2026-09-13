@@ -14,7 +14,7 @@ app = FastAPI(
 # CORS 설정 (프론트엔드 통신 허용)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.ALLOWED_ORIGINS,
+    allow_origins=["*"],  # 테스트 및 개발 편의를 위해 모든 출처 허용 설정
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
