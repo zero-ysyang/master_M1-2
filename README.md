@@ -3,9 +3,9 @@
 시계열 데이터를 기반으로 사용자의 상태를 파악하고 맞춤형 대화를 제공하는 웹 서비스입니다.
 
 ## 🔗 서비스 링크
-- **Frontend (Vercel):** https://your-app.vercel.app
-- **Backend API (Render):** https://your-backend.onrender.com
-- **API Documentation:** https://your-backend.onrender.com/docs
+- **Frontend (Vercel) :** https://master-m1-2-7ogs504yy-zero-ysyangs-projects.vercel.app
+- **Backend API (Render) :** https://ai-service-backend-uno2.onrender.com
+- **API Documentation :** https://ai-service-backend-uno2.onrender.com/docs
 
 ---
 
@@ -21,7 +21,7 @@
 
 ### Database & AI Model
 - **Google Cloud Firestore**: NoSQL 기반 사용자 데이터 및 대화 내역 저장
-- **Google Gemini API (`gemini-2.5-flash`)**: Context-Aware AI 대화 엔진
+- **Google Gemini API (`gemini-3.5-flash`)**: Context-Aware AI 대화 엔진
 
 ### Deployment & Infrastructure
 - **Vercel**: 프론트엔드 정적 웹 호스팅
