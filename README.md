@@ -43,15 +43,33 @@
 
 ```bash
 # 레포지토리 클론
-git clone [https://github.com/your-username/your-repo.git](https://github.com/your-username/your-repo.git)
-cd your-repo
+git clone https://github.com/zero-ysyang/master_M1-2.git
 
 # 가상환경 생성 및 패키지 설치
 python -m venv venv
 pip install -r requirements.txt
 
 # 환경 변수(.env) 설정
-# GEMINI_API_KEY, FIREBASE_CREDENTIALS_PATH, ALLOWED_ORIGINS 작성
+GEMINI_API_KEY, FIREBASE_CREDENTIALS_PATH, ALLOWED_ORIGINS 작성
 
 # 서버 실행
 uvicorn main:app --reload --port 8000
+```
+
+---
+
+## 📌 스크린샷
+
+### 1) 데이터 요약이 보이는 채팅 화면 (질문+답변 포함)
+<img width="1184" height="1102" alt="캡처1" src="https://github.com/user-attachments/assets/a34828dd-33e9-4ad8-8366-c60eba6627cb" />
+
+### 2) 데이터 관리 화면 (데이터 추가)
+<img width="1174" height="907" alt="캡처2" src="https://github.com/user-attachments/assets/f7a88d3e-f93a-47c8-b073-ce3b23e5e9cd" />
+
+<img width="1178" height="893" alt="캡처3" src="https://github.com/user-attachments/assets/531df020-3f94-4b25-a8b6-86cddfa4c4a4" />
+
+### 3) 대화 기록 화면 (불러오기 동작)
+<img width="1175" height="792" alt="캡처4" src="https://github.com/user-attachments/assets/7ab7e704-c848-4278-85af-79e5aa0d2627" />
+
+
+
