@@ -39,9 +39,8 @@
 
 ---
 
-## 🚀 실행 및 설치 방법 (Local Development)
+## 🚀 로컬 실행 방법
 
-### 1. Backend 설정
 ```bash
 # 레포지토리 클론
 git clone [https://github.com/your-username/your-repo.git](https://github.com/your-username/your-repo.git)
@@ -49,11 +48,10 @@ cd your-repo
 
 # 가상환경 생성 및 패키지 설치
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
 # 환경 변수(.env) 설정
-# GEMINI_API_KEY, FIREBASE_SERVICE_ACCOUNT_JSON 작성
+# GEMINI_API_KEY, FIREBASE_CREDENTIALS_PATH, ALLOWED_ORIGINS 작성
 
 # 서버 실행
 uvicorn main:app --reload --port 8000
