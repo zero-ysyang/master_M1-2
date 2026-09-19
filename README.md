@@ -61,15 +61,17 @@ uvicorn main:app --reload --port 8000
 ## 📌 스크린샷
 
 ### 1) 데이터 요약이 보이는 채팅 화면 (질문+답변 포함)
-<img width="1184" height="1102" alt="캡처1" src="https://github.com/user-attachments/assets/a34828dd-33e9-4ad8-8366-c60eba6627cb" />
+<img width="1015" height="941" alt="11" src="https://github.com/user-attachments/assets/af40813c-2c82-4938-9a6d-0239fd56e037" />
+
 
 ### 2) 데이터 관리 화면 (데이터 추가)
-<img width="1174" height="907" alt="캡처2" src="https://github.com/user-attachments/assets/f7a88d3e-f93a-47c8-b073-ce3b23e5e9cd" />
+<img width="970" height="887" alt="22" src="https://github.com/user-attachments/assets/fecf73ea-ed65-438b-bb84-97a745163de3" />
+<p></p>
+<img width="956" height="898" alt="33" src="https://github.com/user-attachments/assets/914ce335-3a93-43c9-85a9-093149a38b36" />  
 
-<img width="1178" height="893" alt="캡처3" src="https://github.com/user-attachments/assets/531df020-3f94-4b25-a8b6-86cddfa4c4a4" />
 
 ### 3) 대화 기록 화면 (불러오기 동작)
-<img width="1175" height="792" alt="캡처4" src="https://github.com/user-attachments/assets/7ab7e704-c848-4278-85af-79e5aa0d2627" />
+<img width="946" height="608" alt="44" src="https://github.com/user-attachments/assets/910eaac5-d8f8-43d6-95ea-59948da585fd" />
 
 
 
