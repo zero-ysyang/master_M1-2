@@ -1,9 +1,9 @@
-# 📊 Data-Aware AI Assistant (내 상황을 아는 AI 비서)
+# 📊 학습시간관리 AI 비서
 
 시계열 데이터를 기반으로 사용자의 상태를 파악하고 맞춤형 대화를 제공하는 웹 서비스입니다.
 
 ## 🔗 서비스 링크
-- **Frontend (Vercel) :** https://master-m1-2-7ogs504yy-zero-ysyangs-projects.vercel.app
+- **Frontend (Vercel) :** https://master-m1-2.vercel.app
 - **Backend API (Render) :** https://ai-service-backend-uno2.onrender.com
 - **API Documentation :** https://ai-service-backend-uno2.onrender.com/docs
 
